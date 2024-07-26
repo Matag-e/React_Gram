@@ -1,5 +1,4 @@
 const User = require("../models/User");
-
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
@@ -36,7 +35,7 @@ const register = async (req, res) => {
     password: passwordHash,
   });
 
-  // If user was created sucessfully, return the token
+  // If user was created successfully, return the token
   if (!newUser) {
     res.status(422).json({
       errors: ["Houve um erro, por favor tente novamente mais tarde."],
@@ -82,10 +81,10 @@ const login = async (req, res) => {
     token: generateToken(user._id),
   });
 };
+
 // Update user
 const update = async (req, res) => {
   const { name, password, bio } = req.body;
-
   let profileImage = null;
 
   if (req.file) {
@@ -94,9 +93,13 @@ const update = async (req, res) => {
 
   const reqUser = req.user;
 
-  const user = await User.findById(
-    new mongoose.Types.ObjectId(reqUser._id)
-  ).select("-password");
+  // Convert the user ID to a valid ObjectId
+  const user = await User.findById(reqUser._id).select("-password");
+
+  if (!user) {
+    res.status(404).json({ errors: ["Usuário não encontrado!"] });
+    return;
+  }
 
   if (name) {
     user.name = name;
@@ -125,9 +128,13 @@ const update = async (req, res) => {
 const getUserById = async (req, res) => {
   const { id } = req.params;
 
-  const user = await User.findById(new mongoose.Types.ObjectId(id)).select(
-    "-password"
-  );
+  // Convert the id to a valid ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400).json({ errors: ["ID de usuário inválido!"] });
+    return;
+  }
+
+  const user = await User.findById(id).select("-password");
 
   // Check if user exists
   if (!user) {

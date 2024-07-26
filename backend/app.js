@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-const port = process.env.PORT;
+const port = process.env.PORT
 
 const app = express();
 
@@ -19,18 +19,23 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // db connection
-require("./config/db.js");
+const connectDB = require("./config/db.js");
 
-// test route
-app.get("/", (req, res) => {
-  res.send("API Working!");
-});
+// Ensure DB connection is established before starting the server
+connectDB().then(() => {
+  // Test route
+  app.get("/", (req, res) => {
+    res.send("API Working!");
+  });
 
-// routes
-const router = require("./routes/Router.js");
+  // routes
+  const router = require("./routes/Router.js");
 
-app.use(router);
+  app.use(router);
 
-app.listen(port, () => {
-  console.log(`App rodando na porta ${port}`);
+  app.listen(port, () => {
+    console.log(`App rodando na porta ${port}`);
+  });
+}).catch((error) => {
+  console.error("Falha ao conectar ao banco de dados:", error);
 });

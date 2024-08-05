@@ -23,7 +23,7 @@ const Photo = () => {
 
   const dispatch = useDispatch();
   
-
+  const resetMessage = useResetComponentMessage(dispatch);
 
   const { user } = useSelector((state) => state.auth);
   const { photo, loading, error, message } = useSelector(
@@ -40,6 +40,8 @@ const Photo = () => {
   // Like and Comments
   const handleLike = () =>{
     dispatch(like(photo._id))
+
+    resetMessage()
   }
 
   if(loading){

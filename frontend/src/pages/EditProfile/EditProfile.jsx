@@ -63,7 +63,7 @@ const EditProfile = () => {
          formData.append(key, userData[key])
      );
      formData.append("user", userFormData);
-  await dispatch(updateProfile(formData));
+    dispatch(updateProfile(formData));
 
     setTimeout(() => {
       dispatch(resetMessage());
@@ -86,13 +86,13 @@ const EditProfile = () => {
       <p className="subtitle">
         Adicione uma imagem de perfil e conte mais sobre você...
       </p>
-      {(user.profileImg || previewImage) && (
+      {(user.profileImage || previewImage) && (
         <img
           className="profile-image"
           src={
             previewImage
               ? URL.createObjectURL(previewImage)
-              : `${uploads}/users/${user.profileImg}`
+              : `${uploads}/users/${user.profileImage}`
           }
           alt={user.name}
         />

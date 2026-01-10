@@ -1,3 +1,60 @@
-.container{
-    min-height: 70vh;
+.App {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px 40px; /* Top padding para mobile navbar */
+  min-height: 80vh;
+}
+
+/* Layout Desktop */
+@media (min-width: 1024px) {
+  .container {
+    margin-left: var(--sidebar-width);
+    padding: 40px; /* Sem padding top excessivo pois é sidebar */
+    max-width: calc(100% - var(--sidebar-width));
+  }
+}
+
+/* Utilitários de Texto */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Mensagens de Erro/Sucesso */
+.message {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.error {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.success {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }

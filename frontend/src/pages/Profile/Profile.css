@@ -1,0 +1,219 @@
+#profile {
+  width: 100%;
+  max-width: 935px; /* Largura padrão "Instagram" desktop */
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Header Minimalista */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 44px;
+  /* Removemos bordas e fundos pesados */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.profile-header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 100px; /* Espaço generoso entre avatar e info */
+  object-fit: cover;
+  /* Borda sutil apenas se necessário para contraste */
+  border: 1px solid var(--border-subtle);
+}
+
+.profile-description {
+  flex: 1;
+}
+
+.profile-description h2 {
+  font-size: 28px;
+  font-weight: 300; /* Tipografia mais leve e elegante */
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.profile-description p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Formulário "Nova Foto" - Clean Card */
+.new-photo {
+  padding: 24px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 44px;
+}
+
+.new-photo h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.new-photo form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.new-photo label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.new-photo label span {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Grid de Fotos */
+.user-photos h2 {
+  font-size: 0; /* Esconde o título "Fotos publicadas" visualmente, mas mantem no DOM */
+  margin: 0;
+  height: 0;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+}
+
+/* Adiciona uma borda superior para separar header do grid, estilo abas */
+.user-photos {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+}
+
+.photos-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Sempre 3 colunas */
+  gap: 28px; /* Espaçamento clássico */
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.photo:hover img {
+  opacity: 0.9;
+}
+
+/* Ações nas Fotos (Hover Overlay) */
+.actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  opacity: 0; /* Invisível por padrão */
+  transition: opacity 0.2s ease;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.photo:hover .actions {
+  opacity: 1; /* Visível no hover */
+}
+
+.actions svg {
+  color: #fff; /* Ícones brancos */
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.actions svg:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+/* Mobile Responsividade */
+@media (max-width: 768px) {
+  #profile {
+    padding: 20px 0; /* Remove padding lateral no mobile para fotos full-width se quiser, ou mantem */
+  }
+
+  .profile-header {
+    flex-direction: column;
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+
+  .profile-header img {
+    margin-right: 0;
+    margin-bottom: 24px;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile-description {
+    text-align: center;
+  }
+  
+  .profile-description h2 {
+    font-size: 24px;
+  }
+
+  .photos-container {
+    gap: 3px; /* Gap mínimo no mobile */
+  }
+
+  /* No mobile, actions não podem depender de hover */
+  .actions {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    align-items: flex-end;
+    padding-bottom: 10px;
+  }
+}
+
+/* Utilitários de Edição */
+.edit-photo {
+  margin-bottom: 2rem;
+  padding: 24px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.edit-photo img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.cancel-btn {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  margin-left: 10px;
+}

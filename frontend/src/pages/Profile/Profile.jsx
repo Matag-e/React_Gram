@@ -1,9 +1,9 @@
 import "./Profile.css";
 
-import { uploads } from "../utils/config";
+import { uploads } from "../../utils/config";
 
 // components
-import Message from "../components/Message";
+import Message from "../../components/Message";
 import { Link } from "react-router-dom";
 import { BsFillEyeFill, BsPencil, BsPencilFill, BsXLg } from "react-icons/bs";
 
@@ -13,14 +13,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 // Redux
-import { getUserDetails } from "../slices/userSlice";
+import { getUserDetails } from "../../slices/userSlice";
 import {
   publishPhoto,
   resetMessage,
   getUserPhotos,
   deletePhoto,
   updatePhoto
-} from "../slices/photoSlice";
+} from "../../slices/photoSlice";
 
 const Profile = () => {
   const { id } = useParams();
@@ -182,7 +182,7 @@ const Profile = () => {
                 value={editTitle || ""}
               />
               <input type="submit" value="Atualizar" />
-              <button clasName="cancel.btn" onClick={handleCancelEdit}>
+              <button className="cancel-btn" onClick={handleCancelEdit}>
                 Cancelar edição
               </button>
             </form>

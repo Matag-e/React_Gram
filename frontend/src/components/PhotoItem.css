@@ -1,15 +1,82 @@
+.photo-item {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-item:hover {
+  border-color: var(--border-focus);
+}
+
+.photo-header {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+
+.photo-header a {
+  color: var(--text-primary);
+}
+
 .photo-item img {
   width: 100%;
+  height: auto;
+  display: block;
+  max-height: 600px;
+  object-fit: cover;
 }
 
-#home .photo-item h2{
-    margin-bottom: .2em;
+.photo-footer {
+  padding: 1rem;
 }
 
-.photo-author {
-    text-align: left;
+.photo-info {
+  margin: 10px 0;
+  font-size: 0.95rem;
 }
 
-.photo-author a{
-    font-weight: bold;
+.author-link {
+  font-weight: 700;
+  margin-right: 8px;
+  color: var(--text-primary);
+}
+
+.photo-title {
+  color: var(--text-secondary);
+}
+
+.btn-comment {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.btn-comment:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* Like Container Overrides inside PhotoItem if needed */
+.like {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.like svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.like svg:active {
+  transform: scale(0.9);
 }

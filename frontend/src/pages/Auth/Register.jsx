@@ -31,8 +31,6 @@ const Register = () => {
       confirmPassword,
     };
 
-    console.log(user);
-
     dispatch(register(user));
   };
 
@@ -70,8 +68,8 @@ const Register = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           value={confirmPassword}
         />
-        {!loading && <input type="Submit" value="Cadastrar" />}
-        {loading && <input type="Submit" value="Carregando..." disabled />}
+        {!loading && <input type="submit" value="Cadastrar" />}
+        {loading && <input type="submit" value="Carregando..." disabled />}
         {error && <Message msg={error} type="error" />}
       </form>
       <p>

@@ -106,14 +106,46 @@ const comment = async (data, id, token) => {
 
 
 
+// Get all photos
+const getAllPhotos = async (token) => {
+  const config = requestConfig("GET", null, token);
+
+  try {
+    const res = await fetch(api + "/photos", config)
+      .then((res) => res.json())
+      .catch((err) => err);
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Search photos by title
+const searchPhotos = async (query, token) => {
+  const config = requestConfig("GET", null, token);
+
+  try {
+    const res = await fetch(api + "/photos/search?q=" + query, config)
+      .then((res) => res.json())
+      .catch((err) => err);
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const photoService = {
   publishPhoto,
+  getAllPhotos,
   getUserPhotos,
   deletePhoto,
   updatePhoto,
   getPhoto,
   like,
-  comment
+  comment,
+  searchPhotos
 };
 
 export default photoService;

@@ -20,7 +20,6 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // db connection
 const conn = require('./config/db');
-conn();
 
 // Ensure DB connection is established before starting the server
 conn().then(() => {

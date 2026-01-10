@@ -43,9 +43,15 @@ export const getUserPhotos = createAsyncThunk(
     const token = thunkAPI.getState().auth.user.token;
 
     const data = await photoService.getUserPhotos(id, token);
-    if (data.errors) {
-      return thunkAPI.rejectWithValue(data.errors[0]);
+    
+    // Check if data is not an array (error case)
+    if (!Array.isArray(data)) {
+      if (data.errors) {
+        return thunkAPI.rejectWithValue(data.errors[0]);
+      }
+      return thunkAPI.rejectWithValue(data.message || "Erro ao buscar fotos.");
     }
+
     return data;
   }
 );

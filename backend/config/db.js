@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASS;
+const dbPassword = process.env.DB_PASSWORD;
 
 const conn = async () => {
     try{
@@ -13,7 +13,4 @@ const conn = async () => {
         console.log("Erro ao conectar ao banco: " + error)
     }
 }
-
-conn();
-
 module.exports = conn;

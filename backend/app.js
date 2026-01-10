@@ -19,10 +19,11 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // db connection
-const connectDB = require("./config/db.js");
+const conn = require('./config/db');
+conn();
 
 // Ensure DB connection is established before starting the server
-connectDB().then(() => {
+conn().then(() => {
   // Test route
   app.get("/", (req, res) => {
     res.send("API Working!");
